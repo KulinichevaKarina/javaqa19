@@ -10,17 +10,19 @@ public class Game {
         //добавить игрока в список players
     }
 
-    private Player findById(int id) {
+    private Player findByName(String name) {
         for (Player player : players) {
-            if (id == player.getId()) {
+            if (name == player.getName()) {
                 return player;
             }
         }
         return null;
     }
 
-    public int round(Player player1, Player player2) throws NotRegisteredException {
-        if (findById(player1.getId()) == null || findById(player2.getId()) == null) {
+    public int round(String playerName1, String playerName2) throws NotRegisteredException {
+        Player player1 = findByName(playerName1);
+        Player player2 = findByName(playerName2);
+        if (player1 == null || player2 == null) {
             throw new NotRegisteredException("One of the players is not registered");
         }
         if (player1.getStrength() < player2.getStrength()) {
